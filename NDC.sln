@@ -1,8 +1,28 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDC.BackgroundDataCollector", "NDC.BackgroundDataCollector\NDC.BackgroundDataCollector.csproj", "{39F2E75A-809D-4EAA-86DC-EBEB9EF82FA0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDC.WebApi", "NDC.WebApi\NDC.WebApi.csproj", "{6585BB0D-616D-4225-9819-127DD7E5EAA5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDC.DataAccess", "NDC.DataAccess\NDC.DataAccess.csproj", "{1A6AD4FD-7B26-4502-9B31-2D41F74A6FA9}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{39F2E75A-809D-4EAA-86DC-EBEB9EF82FA0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{39F2E75A-809D-4EAA-86DC-EBEB9EF82FA0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{39F2E75A-809D-4EAA-86DC-EBEB9EF82FA0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{39F2E75A-809D-4EAA-86DC-EBEB9EF82FA0}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6585BB0D-616D-4225-9819-127DD7E5EAA5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6585BB0D-616D-4225-9819-127DD7E5EAA5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6585BB0D-616D-4225-9819-127DD7E5EAA5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6585BB0D-616D-4225-9819-127DD7E5EAA5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A6AD4FD-7B26-4502-9B31-2D41F74A6FA9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A6AD4FD-7B26-4502-9B31-2D41F74A6FA9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A6AD4FD-7B26-4502-9B31-2D41F74A6FA9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A6AD4FD-7B26-4502-9B31-2D41F74A6FA9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
