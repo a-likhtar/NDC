@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDC.BackgroundDataCollector", "NDC.BackgroundDataCollector\NDC.BackgroundDataCollector.csproj", "{39F2E75A-809D-4EAA-86DC-EBEB9EF82FA0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDC.BackgroundJob", "NDC.BackgroundJob\NDC.BackgroundJob.csproj", "{39F2E75A-809D-4EAA-86DC-EBEB9EF82FA0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NDC.WebApi", "NDC.WebApi\NDC.WebApi.csproj", "{6585BB0D-616D-4225-9819-127DD7E5EAA5}"
 EndProject
