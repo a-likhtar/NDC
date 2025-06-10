@@ -1,6 +1,6 @@
-using NDC.DataAccess.Enums;
+using NDC.Domain.Enums;
 
-namespace NDC.DataAccess.Entities;
+namespace NDC.Domain.Entities;
 
 public class Meteorite
 {
@@ -31,4 +31,6 @@ public class Meteorite
     public int? ComputedRegionCbhk { get; set; }
     
     public int? ComputedRegionNnqa { get; set; }
+
+    public string Hash { get; set; } = string.Empty;
 }

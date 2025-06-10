@@ -1,4 +1,4 @@
-namespace NDC.DataAccess.Entities;
+namespace NDC.Domain.Entities;
 
 public class MeteoriteClass
 {

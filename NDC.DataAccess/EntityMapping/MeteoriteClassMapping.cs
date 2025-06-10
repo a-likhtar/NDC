@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NDC.DataAccess.Entities;
+using NDC.Domain.Entities;
 
 namespace NDC.DataAccess.EntityMapping;
 

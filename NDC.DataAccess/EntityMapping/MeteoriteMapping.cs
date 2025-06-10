@@ -1,6 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using NDC.DataAccess.Entities;
+using NDC.Domain.Entities;
 
 namespace NDC.DataAccess.EntityMapping;
 
@@ -70,5 +70,11 @@ public class MeteoriteMapping : IEntityTypeConfiguration<Meteorite>
         builder
             .Property(m => m.ComputedRegionNnqa)
             .IsRequired(false);
+
+        builder
+            .Property(m => m.Hash)
+            .HasColumnType("varchar(64)")
+            .HasMaxLength(64)
+            .IsRequired();
     }
 }

@@ -1,7 +1,8 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using NDC.DataAccess;
-using NDC.DataAccess.Entities;
+using NDC.Domain.Entities;
+using NDC.Domain.Services;
 
 namespace NDC.WebApi.Controllers;
 
@@ -10,10 +11,12 @@ namespace NDC.WebApi.Controllers;
 public class MeteoritesController : Controller
 {
     private readonly MeteoritesContext _context;
+    private readonly IItemSyncService _itemSyncService;
     
-    public MeteoritesController(MeteoritesContext context)
+    public MeteoritesController(MeteoritesContext context, IItemSyncService itemSyncService)
     {
         _context = context;
+        _itemSyncService = itemSyncService;
     }
 
     [HttpGet]
@@ -23,5 +26,13 @@ public class MeteoritesController : Controller
         var meteorites = await _context.Meteorites.ToListAsync();
 
         return Ok(meteorites);
+    }
+
+    [HttpGet("sync")]
+    public async Task<IActionResult> SyncItems()
+    {
+        await _itemSyncService.SyncItemsAsync();
+
+        return Ok();
     }
 }

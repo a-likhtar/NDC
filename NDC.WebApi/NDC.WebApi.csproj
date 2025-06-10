@@ -18,6 +18,7 @@
 
     <ItemGroup>
       <ProjectReference Include="..\NDC.DataAccess\NDC.DataAccess.csproj" />
+      <ProjectReference Include="..\NDC.Domain\NDC.Domain.csproj" />
     </ItemGroup>
 
 </Project>

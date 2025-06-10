@@ -1,4 +1,4 @@
-namespace NDC.DataAccess.Enums;
+namespace NDC.Domain.Enums;
 
 public enum FallType
 {
