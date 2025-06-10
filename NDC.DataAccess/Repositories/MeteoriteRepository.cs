@@ -20,6 +20,7 @@ public class MeteoriteRepository : IMeteoriteRepository
     }
 
     public IQueryable<Meteorite> All => _context.Set<Meteorite>().AsNoTracking();
+    
     public async Task SyncMeteoritesAsync(List<Meteorite> toInsert, List<Meteorite> toUpdate, List<Meteorite> toDelete)
     {
         var bulkConfig = new BulkConfig
