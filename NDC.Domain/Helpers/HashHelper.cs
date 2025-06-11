@@ -7,7 +7,7 @@ namespace NDC.Domain.Helpers;
 
 public static class HashHelper
 {
-    public static string ComputeHash(MeteoriteDto item)
+    public static string ComputeHash<T>(T item)
     {
         var json = JsonSerializer.Serialize(item);
         using var sha256 = SHA256.Create();

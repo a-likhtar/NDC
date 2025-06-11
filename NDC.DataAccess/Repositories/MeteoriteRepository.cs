@@ -16,12 +16,12 @@ public class MeteoriteRepository : IMeteoriteRepository
 
     public async Task<IEnumerable<Meteorite>> GetAllAsync()
     {
-        return await All.AsNoTracking().ToListAsync();
+        return await _context.Meteorites.AsNoTracking().ToListAsync();
     }
 
-    public IQueryable<Meteorite> All => _context.Set<Meteorite>().AsNoTracking();
+    public IQueryable<Meteorite> GetAll() => _context.Meteorites.AsQueryable();
     
-    public async Task SyncMeteoritesAsync(List<Meteorite> toInsert, List<Meteorite> toUpdate, List<Meteorite> toDelete)
+    public async Task SyncMeteoritesAsync(List<Meteorite> itemsToInsert, List<Meteorite> itemsToUpdate, List<Meteorite> itemsToDelete)
     {
         var bulkConfig = new BulkConfig
         {
@@ -31,19 +31,19 @@ public class MeteoriteRepository : IMeteoriteRepository
 
         await using var transaction = await _context.Database.BeginTransactionAsync();
         
-        if (toInsert.Any())
+        if (itemsToInsert.Any())
         {
-            await _context.BulkInsertAsync(toInsert, bulkConfig);
+            await _context.BulkInsertAsync(itemsToInsert, bulkConfig);
         }
 
-        if (toUpdate.Any())
+        if (itemsToUpdate.Any())
         {
-            await _context.BulkUpdateAsync(toUpdate, bulkConfig);
+            await _context.BulkUpdateAsync(itemsToUpdate, bulkConfig);
         }
 
-        if (toDelete.Any())
+        if (itemsToDelete.Any())
         {
-            await _context.BulkDeleteAsync(toDelete, bulkConfig);
+            await _context.BulkDeleteAsync(itemsToDelete, bulkConfig);
         }
 
         await transaction.CommitAsync();

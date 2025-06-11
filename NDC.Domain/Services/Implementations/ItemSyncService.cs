@@ -83,9 +83,9 @@ public class ItemSyncService : IItemSyncService
         var existingMeteorites = await _meteoriteRepository.GetAllAsync();
         var existingMeteoritesDict = existingMeteorites.ToDictionary(m => m.MeteoriteId);
 
-        var toInsert = new List<Meteorite>();
-        var toUpdate = new List<Meteorite>();
-        var toDelete = existingMeteorites
+        var itemsToInsert = new List<Meteorite>();
+        var itemsToUpdate = new List<Meteorite>();
+        var itemsToDelete = existingMeteorites
             .Where(m => remoteMeteorites.All(r => r.MeteoriteId != m.MeteoriteId))
             .ToList();
 
@@ -93,15 +93,15 @@ public class ItemSyncService : IItemSyncService
         {
             if (!existingMeteoritesDict.TryGetValue(remoteMeteorite.MeteoriteId, out var existingMeteorite))
             {
-                toInsert.Add(remoteMeteorite);
+                itemsToInsert.Add(remoteMeteorite);
             }
             else if (existingMeteorite.Hash != remoteMeteorite.Hash)
             {
-                toUpdate.Add(remoteMeteorite);
+                itemsToUpdate.Add(remoteMeteorite);
             }
         }
 
         // syncing with bulk operations
-        await _meteoriteRepository.SyncMeteoritesAsync(toInsert, toUpdate, toDelete);
+        await _meteoriteRepository.SyncMeteoritesAsync(itemsToInsert, itemsToUpdate, itemsToDelete);
     }
 }
