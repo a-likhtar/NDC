@@ -2,7 +2,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace NDC.Domain.QueryParams;
 
-public class MeteoriteQueryParams
+public class MeteoriteQueryParams : IValidatableObject
 {
     [StringLength(128)]
     public string? NameContains { get; set; }

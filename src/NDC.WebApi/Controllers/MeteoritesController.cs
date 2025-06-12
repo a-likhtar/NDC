@@ -11,18 +11,20 @@ using NDC.Domain.Services;
 namespace NDC.WebApi.Controllers;
 
 [ApiController]
-[Route("[controller]")]
+[Route("api/[controller]")]
 public class MeteoritesController : Controller
 {
     private readonly MeteoritesContext _context;
     private readonly IItemSyncService _itemSyncService;
     private readonly IMeteoriteRepository _meteoriteRepository;
+    private readonly IMeteoriteClassRepository _meteoriteClassRepository;
     
-    public MeteoritesController(MeteoritesContext context, IItemSyncService itemSyncService, IMeteoriteRepository meteoriteRepository)
+    public MeteoritesController(MeteoritesContext context, IItemSyncService itemSyncService, IMeteoriteRepository meteoriteRepository, IMeteoriteClassRepository meteoriteClassRepository)
     {
         _context = context;
         _itemSyncService = itemSyncService;
         _meteoriteRepository = meteoriteRepository;
+        _meteoriteClassRepository = meteoriteClassRepository;
     }
 
     [HttpGet]
@@ -55,10 +57,30 @@ public class MeteoritesController : Controller
 
         var grouped = filteredMeteorites
             .GroupBy(m => m.ObservationYear!.Value.Year)
-            .ApplySortingToGroups(queryParams)
-            .Select(g => new GroupedMeteoritesResult { Year = g.Key, Items = g.ToList() });
+            .ApplySortingToGroups(queryParams);
 
-        return Ok(grouped);
+        var groupedResult = new GroupedMeteoritesResult
+        {
+            TotalCount = filteredMeteorites.Count,
+            TotalMass = filteredMeteorites.Sum(m => m.Mass),
+            Groups = grouped.Select(g => new MeteoriteGroup
+            {
+                Year = g.Key,
+                Mass = g.Sum(m => m.Mass),
+                MeteoritesCount = g.Count()
+            })
+        };
+
+        return Ok(groupedResult);
+    }
+
+    [HttpGet("classes")]
+    [ProducesResponseType(StatusCodes.Status200OK)]
+    public async Task<IActionResult> GetMeteoritesClasses()
+    {
+        var meteoriteClasses = await _meteoriteClassRepository.GetAll();
+
+        return Ok(meteoriteClasses);
     }
 
     [HttpGet("sync")]
@@ -68,4 +90,6 @@ public class MeteoritesController : Controller
 
         return Ok();
     }
+    
+    // TODO: sorting, add indexes, cache, invocation inside job
 }

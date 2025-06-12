@@ -22,6 +22,13 @@ public class MeteoriteClassRepository : IMeteoriteClassRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<MeteoriteClass>> GetAll()
+    {
+        return await _context.MeteoriteClasses
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
     public async Task BulkInsertAsync(IEnumerable<MeteoriteClass> classes)
     {
         await _context.BulkInsertAsync(classes);
