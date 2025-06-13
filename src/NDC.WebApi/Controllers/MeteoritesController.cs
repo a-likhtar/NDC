@@ -27,15 +27,6 @@ public class MeteoritesController : Controller
         _meteoriteClassRepository = meteoriteClassRepository;
     }
 
-    [HttpGet]
-    [ProducesResponseType(typeof(List<Meteorite>), StatusCodes.Status200OK)]
-    public async Task<IActionResult> GetAll()
-    {
-        var meteorites = await _context.Meteorites.ToListAsync();
-
-        return Ok(meteorites);
-    }
-
     /// <summary>
     /// Get grouped meteorites with filtering and sorting.
     /// </summary>
@@ -90,6 +81,4 @@ public class MeteoritesController : Controller
 
         return Ok();
     }
-    
-    // TODO: sorting, add indexes, cache, invocation inside job
 }

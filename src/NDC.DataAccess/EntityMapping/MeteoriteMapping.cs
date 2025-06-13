@@ -19,6 +19,11 @@ public class MeteoriteMapping : IEntityTypeConfiguration<Meteorite>
             .IsRequired();
 
         builder
+            .HasIndex(m => m.Name)
+            .HasDatabaseName("IX_Meteorite_Name")
+            .IsUnique(false);
+
+        builder
             .ToTable("Meteorites")
             .HasIndex(m => m.MeteoriteId)
             .IsUnique();
@@ -47,6 +52,10 @@ public class MeteoriteMapping : IEntityTypeConfiguration<Meteorite>
             .Property(m => m.ObservationYear)
             .HasColumnType("date")
             .IsRequired(false);
+
+        builder
+            .HasIndex(m => m.ObservationYear)
+            .HasDatabaseName("IX_Meteorite_ObservationYear");
 
         builder
             .Property(m => m.Reclat)

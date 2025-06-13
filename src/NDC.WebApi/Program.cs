@@ -53,9 +53,3 @@ app.UseAuthorization();
 app.MapControllers();
 
 app.Run();
-
-// Регистрация DbContext и репозиториев
-// builder.Services.AddDbContext<AppDbContext>(options =>
-//     options.UseSqlServer(connectionString));
-//
-// builder.Services.AddScoped<IUserRepository, UserRepository>();

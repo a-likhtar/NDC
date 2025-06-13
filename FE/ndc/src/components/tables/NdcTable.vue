@@ -1,11 +1,32 @@
 <script setup>
-    defineProps({
+import { computed } from 'vue';
+
+    const props = defineProps({
         meteorites: {
             groups: [],
             totalCount: Number,
             totalMass: Number,
         },
+        sort: {
+            sortBy: String,
+            sortDescending: Boolean,
+        },
     });
+
+    const sortIconClass = computed(() => {
+        return {
+            'bi bi-sort-numeric-down-alt': props.sort.sortDescending,
+            'bi bi-sort-numeric-up': !props.sort.sortDescending,
+        };
+    });
+
+    const emit = defineEmits(['update:sort']);
+
+    function updateSortOrder(sortBy) {
+        let sortDescending = sortBy != props.sort.sortBy ? false : !props.sort.sortDescending
+    
+        emit('update:sort', { sortBy, sortDescending });
+    }
 </script>
 
 <template>
@@ -13,9 +34,18 @@
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Year</th>
-                <th scope="col">Meteorites count</th>
-                <th scope="col">Total mass</th>
+                <th scope="col" class="ndc-table-header" @click="updateSortOrder('Year')">
+                    Year
+                    <i v-if="props.sort.sortBy == 'Year'" :class="sortIconClass"></i>
+                </th>
+                <th scope="col" class="ndc-table-header" @click="updateSortOrder('Count')">
+                    Meteorites count
+                    <i v-if="props.sort.sortBy == 'Count'" :class="sortIconClass"></i>
+                </th>
+                <th scope="col" class="ndc-table-header" @click="updateSortOrder('TotalMass')">
+                    Total mass
+                    <i v-if="props.sort.sortBy == 'TotalMass'" :class="sortIconClass"></i>
+                </th>
             </tr>
         </thead>
         <tbody>
@@ -37,4 +67,8 @@
     </table>
 </template>
 
-<style scoped></style>
+<style scoped>
+    .ndc-table-header {
+        cursor: pointer;
+    }
+</style>

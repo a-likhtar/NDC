@@ -29,7 +29,7 @@ public class ItemSyncService : IItemSyncService
         // check if Json Not Modified with ETags
         var jsonUrl = _configuration["MeteoritesData"];
         var json = await _httpClient.GetStringAsync(jsonUrl);
-
+        
         var jsonSerializerOptions = new JsonSerializerOptions
         {
             Converters = { new MeteoriteConverter() }

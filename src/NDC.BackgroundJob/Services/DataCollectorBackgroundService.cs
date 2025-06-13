@@ -44,7 +44,7 @@ public class DataCollectorBackgroundService : BackgroundService
                 .WithIdentity("NasaDataCollectorTrigger")
                 .StartNow()
                 .WithSimpleSchedule(x => x
-                    .WithIntervalInSeconds(10)
+                    .WithIntervalInSeconds(3600)
                     .RepeatForever())
                 .Build();
 
